@@ -1,0 +1,44 @@
+actions:
+  1:
+    action: rollover
+    description: >-
+      Rollover the index every 5gb or every 1d
+    options:
+      name: logs_write
+      conditions:
+        max_size: 5gb
+        max_age: 1d
+  2:
+    action: delete_indices
+    description: >-
+      Delete index's older than 60 days
+    options:
+      ignore_empty_list: True
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: logs-
+    - filtertype: age
+      source: name
+      direction: older
+      timestring: '%Y.%m.%d'
+      unit: days
+      unit_count: 60
+
+  3:
+    action: delete_indices
+    description: >-
+      Delete index's when reach disk space 300gb
+    options:
+      ignore_empty_list: True
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: logs-
+    - filtertype: space
+      disk_space: 300
+      use_age: True
+      source: field_stats
+      field: '@timestamp'
+      stats_result: max_value
+

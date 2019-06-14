@@ -1,0 +1,1 @@
+cd "C:\Program Files\elasticsearch-curator" && curator --config CONFIG.YML ACTION_FILE.YML
