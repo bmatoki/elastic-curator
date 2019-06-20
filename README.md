@@ -29,6 +29,11 @@ with the values :
 }
 ```
 
+Elastic curator install link :
+```
+https://www.elastic.co/guide/en/elasticsearch/client/curator/current/windows-msi.html
+```
+
 ## Authors
 
 * Boaz Matoki
